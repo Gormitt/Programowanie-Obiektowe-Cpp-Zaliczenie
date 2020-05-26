@@ -1,0 +1,10 @@
+Zadaniem gracza jest usuwanie kulek z planszy przez ustawianie obok siebie w ciaglej linii (poziomej, pionowej lub ukosnej) 
+pieciu lub wiecej kulek jednakowego koloru. Za kazda usunieta kulke otrzymuje sie jeden punkt.
+
+W jednym ruchu dowolna kulke mozna przestawic na puste pole planszy, jesli istnieje do niego dojscie, 
+poruszajac sie po sasiednich pustych polach planszy (sasiednie pola przylegaja do siebie bokiem).
+
+Jesli przestawienie powoduje usuniêcie kulek, to gracz wykonuje od razu kolejne przestawienie, a jesli 
+nie powoduje, na planszy pojawiaja sie trzy nowe kulki.
+
+Gra konczy siê w momencie zapelnienia planszy.
