@@ -144,6 +144,7 @@
     <ClCompile Include="Pole.cpp" />
     <ClCompile Include="Ruch.cpp" />
     <ClCompile Include="RuchGracz.cpp" />
+    <ClCompile Include="RuchKomputer.cpp" />
     <ClCompile Include="Ui.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -152,6 +153,7 @@
     <ClInclude Include="Pole.h" />
     <ClInclude Include="Ruch.h" />
     <ClInclude Include="RuchGracz.h" />
+    <ClInclude Include="RuchKomputer.h" />
     <ClInclude Include="Ui.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

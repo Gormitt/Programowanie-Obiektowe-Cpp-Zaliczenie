@@ -9,6 +9,8 @@ protected:
 	bool czyJestDojscie;
 
 	bool Jest_Dojscie(int** maska, int ai, int aj, int bi, int bj);
+	int** Alokuj_maske();
+	void Dealokuj_maske(int** maska);
 public:
 	Ruch() = delete;
 	Ruch(Plansza* plansza, int ai, int aj, int bi, int bj);

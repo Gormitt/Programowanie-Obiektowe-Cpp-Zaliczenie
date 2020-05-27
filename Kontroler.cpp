@@ -2,6 +2,7 @@
 #include <string>
 #include "Kontroler.h"
 #include "RuchGracz.h"
+#include "RuchKomputer.h"
 
 Kontroler::Kontroler() :
 	ui(Ui()),
@@ -114,9 +115,18 @@ bool Kontroler::Pobierz_ruch() {
 		break;
 	}
 
+	this->ui.Wyswietl_info("aby komputer uzupelnij ten ruch napisz ");
+	std::cout << (char)('A' + this->plansza->Get_wysokosc()) << std::endl;
 	while (true) {
 		this->ui.Wyswietl_info("podaj symbol rzedu i nr. kolumny docelowego pola\n");
-		bi = this->ui.Pobierz_wybor<char>('A', 'A' + this->plansza->Get_wysokosc() - 1) - 'A';
+		bi = this->ui.Pobierz_wybor<char>('A', 'A' + this->plansza->Get_wysokosc()) - 'A';
+		if (bi == this->plansza->Get_wysokosc()) {
+			Ruch* ruch = new RuchKomputer(this->plansza, ai, aj);
+			this->czyDodawacKulki = ruch->Wykonaj();
+			delete ruch;
+			return true;
+		}
+
 		bj = this->ui.Pobierz_wybor<int>(1, this->plansza->Get_szerokosc()) - 1;
 
 		if (this->plansza->Get_stanPola(bi, bj) != 0) {

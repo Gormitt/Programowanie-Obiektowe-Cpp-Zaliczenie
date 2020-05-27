@@ -36,6 +36,9 @@
     <ClCompile Include="RuchGracz.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="RuchKomputer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Kontroler.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="RuchGracz.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="RuchKomputer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
