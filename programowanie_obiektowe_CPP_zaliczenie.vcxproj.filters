@@ -13,6 +13,18 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\Ruch">
+      <UniqueIdentifier>{40966550-27e6-432c-b61d-cde4a994f26f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Ruch">
+      <UniqueIdentifier>{3d6712b3-7237-4231-b970-51c9c1c3af74}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Plansza">
+      <UniqueIdentifier>{e1f94e05-4f10-4580-9eb6-f9208e25e0ca}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Plansza">
+      <UniqueIdentifier>{a0753323-da71-4ccf-90af-7ff3d1d7eb79}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="mateusz_wloczewski_zaliczenie.cpp">
@@ -24,20 +36,20 @@
     <ClCompile Include="Ui.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Plansza.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Pole.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Ruch.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Ruch</Filter>
     </ClCompile>
     <ClCompile Include="RuchGracz.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Ruch</Filter>
     </ClCompile>
     <ClCompile Include="RuchKomputer.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Ruch</Filter>
+    </ClCompile>
+    <ClCompile Include="Plansza.cpp">
+      <Filter>Source Files\Plansza</Filter>
+    </ClCompile>
+    <ClCompile Include="Pole.cpp">
+      <Filter>Source Files\Plansza</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -47,20 +59,20 @@
     <ClInclude Include="Ui.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Plansza.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Pole.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="Ruch.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ruch</Filter>
     </ClInclude>
     <ClInclude Include="RuchGracz.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ruch</Filter>
     </ClInclude>
     <ClInclude Include="RuchKomputer.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Ruch</Filter>
+    </ClInclude>
+    <ClInclude Include="Pole.h">
+      <Filter>Header Files\Plansza</Filter>
+    </ClInclude>
+    <ClInclude Include="Plansza.h">
+      <Filter>Header Files\Plansza</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

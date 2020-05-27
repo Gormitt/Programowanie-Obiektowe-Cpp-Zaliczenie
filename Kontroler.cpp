@@ -11,7 +11,7 @@ Kontroler::Kontroler() :
 	graTrwa(false),
 	czyDodawacKulki(true),
 	czyPrzerwana(false),
-	liczbaWstawianych(LICZBA_WSTAWIANYCH){
+	liczbaWstawianych(LICZBA_WSTAWIANYCH) {
 }
 
 void Kontroler::Start() {
