@@ -4,7 +4,7 @@ pieciu lub wiecej kulek jednakowego koloru. Za kazda usunieta kulke otrzymuje si
 W jednym ruchu dowolna kulke mozna przestawic na puste pole planszy, jesli istnieje do niego dojscie, 
 poruszajac sie po sasiednich pustych polach planszy (sasiednie pola przylegaja do siebie bokiem).
 
-Jesli przestawienie powoduje usuniêcie kulek, to gracz wykonuje od razu kolejne przestawienie, a jesli 
+Jesli przestawienie powoduje usuniecie kulek, to gracz wykonuje od razu kolejne przestawienie, a jesli 
 nie powoduje, na planszy pojawiaja sie trzy nowe kulki.
 
-Gra konczy siê w momencie zapelnienia planszy.
+Gra konczy sie w momencie zapelnienia planszy.
