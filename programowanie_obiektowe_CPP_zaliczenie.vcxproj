@@ -156,6 +156,9 @@
     <ClInclude Include="RuchKomputer.h" />
     <ClInclude Include="Ui.h" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="diagram.cd" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

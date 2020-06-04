@@ -75,4 +75,9 @@
       <Filter>Header Files\Plansza</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="diagram.cd">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>

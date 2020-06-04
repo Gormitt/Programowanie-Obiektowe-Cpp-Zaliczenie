@@ -31,7 +31,7 @@ public:
 	void Wyczysc_ekran();
 	std::string Pobierz_nick();
 
-	// wyswietl <bledy>
+	// wyswietl <bledy><tresc przekazana jako parametr>
 	void Wyswietl_error(std::string tekst);
 	void Wyswietl_info(std::string tekst);
 	void Wyswietl_hint(std::string tekst);
@@ -51,7 +51,7 @@ public:
 	int Get_wielkoscMenuWyjscie();
 	int Get_wielkoscMenuCzyZapisac();
 	
-	// szablony
+	// szablon do pobrania wybooru int oraz char
 	template <class T>
 	T Pobierz_wybor(T min, T max) {
 		T wpis;
