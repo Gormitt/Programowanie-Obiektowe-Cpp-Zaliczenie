@@ -1,6 +1,7 @@
 #include <iostream>
 #include "Pole.h"
 
+// fragment interfejsu rysujacy na ekranie kwadracik o odpowiednim kolorze (decuduje o tym stan)
 Pole::Pole() :
 	i(0),
 	j(0),

@@ -3,8 +3,9 @@
 #include <stdlib.h>
 #include "Plansza.h"
 
-
+// konstruktor wczytujacy z zapisu
 Plansza::Plansza(std::string zapis) :
+	// zainicjalizowanie pol bezpiecznymi wartosciami
 	siatka(NULL),
 	wysokosc(WYSOKOSC),
 	szerokosc(SZEROKOSC),
@@ -12,12 +13,16 @@ Plansza::Plansza(std::string zapis) :
 	liczbaWolnych(0),
 	listaWolnychGlowa(NULL),
 	listaWolnychOgon(NULL) {
+	// informajca czy plansza jest wczytana z pliku
 	this->czyWczytana = true;
+	// informacja czy alokacja pamieci na plansze przebiegla poprawnie
 	this->czyDobrzeAlokowana = this->Alokuj();
 
+	// wczytanie z zapisu
 	if (this->czyDobrzeAlokowana) {
 		std::ifstream plik(zapis);
 		if (plik.good() && plik.is_open() && plik.peek() != std::ifstream::traits_type::eof()) {
+			// zapis niepusty otwarty poprawnie
 			this->czyDobrzeWczytana = true;
 			plik >> this->nick;
 			plik >> this->punkty;
@@ -31,12 +36,15 @@ Plansza::Plansza(std::string zapis) :
 			}
 			plik.close();
 		}
+		// zapis niepoprawnie otwarty badz pusty -> zapisanie ze wczytanie zostalo zakonczone niepowodzeniem
 		else this->czyDobrzeWczytana = false;
 	}
 
+	// alokacja listy wolnych pol
 	this->Alokuj_listeWolnych();
 }
 
+// konstruktor dla planszy w nowej grze (zachowanie analogiczne, ale bez wczytywania)
 Plansza::Plansza(std::string nick, int punkty) :
 	siatka(NULL),
 	wysokosc(WYSOKOSC),
@@ -51,6 +59,7 @@ Plansza::Plansza(std::string nick, int punkty) :
 	this->Alokuj_listeWolnych();
 }
 
+// destruktor niszczy wszystkie zaalokowane dynamiczne pola tej klasy
 Plansza::~Plansza() {
 	this->Dealokuj_listeWolnych();
 	for (int i = 0; i < WYSOKOSC; i++) {
@@ -59,7 +68,9 @@ Plansza::~Plansza() {
 	delete this->siatka;
 }
 
+// alokacja miejsca w pamieci na plansze
 bool Plansza::Alokuj() {
+	// elementami siatki sa instancje klasy Pole
 	this->siatka = new Pole * [WYSOKOSC];
 	if (this->siatka != NULL) {
 		for (int i = 0; i < WYSOKOSC; i++) {
@@ -76,8 +87,11 @@ bool Plansza::Alokuj() {
 	}
 	else return false;
 	return true;
+	// metoda w przypadku jakiegokolwiek niepowodzenia zwroci false
+	// w przypadku poprawnej alokacji zwroci true
 }
 
+// typowa alokacja listy dynamicznej przechowujacej adresy do wolnych elementow siatki
 void Plansza::Alokuj_listeWolnych() {
 	this->liczbaWolnych = this->wysokosc * this->szerokosc;
 	for (int i = 0; i < WYSOKOSC; i++) {
@@ -97,6 +111,7 @@ void Plansza::Alokuj_listeWolnych() {
 	}
 }
 
+// dealokacja dynamicznej listy
 void Plansza::Dealokuj_listeWolnych() {
 	while (this->listaWolnychGlowa) {
 		wolnePola* tmp = this->listaWolnychGlowa->nast;
@@ -108,20 +123,29 @@ void Plansza::Dealokuj_listeWolnych() {
 	this->listaWolnychOgon = NULL;
 }
 
+// metoda zwroci false jezeli po dodaniu nie ma juz ani jednego wolnego miejsca na planszy
+// metoda zwroci true jezeli po dodaniu nadal jest mozliwosc grania
 bool Plansza::Dodaj_losoweKulki(int liczba) {
+	// jezeli chcemy dodac wiecej kulek niz pozwala na to liczba wolnyc pol to redukujemy liczbe dodawanych
 	liczba = (liczba > this->liczbaWolnych) ? this->liczbaWolnych : liczba;
 	for (int i = 0; i < liczba; i++) {
+		// losujemy numer elementu na liscie ktory zostanie zapelniony
 		int wylosowane = rand() % this->liczbaWolnych + 1;
+		// losujemy wartosc jaka zostanie tam wpisana
 		int wartosc = rand() % 7 + 1;
 
+		// przechodzimy przez liste, az wskaznik tmp stanie na polu do zapelnienia
 		wolnePola* tmp = this->listaWolnychGlowa;
 		for (int i = 0; i < wylosowane - 1; i++) {
 			tmp = tmp->nast;
 		}
 
+		// wpisujemy w nim wylosowana wartosc
 		tmp->pole->Set_stan(wartosc);
+		// sprawdzamy czy nie wygeneruje to skasowania
 		this->Skasuj(tmp->pole->Get_i(), tmp->pole->Get_j());
 
+		// na nowo uaktualniamy liste wolnych pol
 		this->Dealokuj_listeWolnych();
 		this->Alokuj_listeWolnych();
 	}
@@ -162,11 +186,14 @@ void Plansza::Dodaj_punkty(int punkty) {
 	this->punkty += punkty;
 }
 
+// metoda sprawdza czy ze wspolrzedna i, j jest powiazane dowolne usuniecie/skasowanie kulek
 int Plansza::Skasuj(int i, int j) {
 	int tmp = this->siatka[i][j].Get_stan();
 	int startPozioma = 0, dlPozioma = 0, maxPozioma = 0;
 	int startPionowa = 0, dlPionowa = 0, maxPionowa = 0;
+	
 	for (int k = 0; k < this->szerokosc; k++) {
+		// idac po plaszczyznie poziomej na wysokosci i zliczamy najdluzszy ciag tych samych kulek
 		if (this->siatka[i][k].Get_stan() == tmp) {
 			dlPozioma++;
 			if (dlPozioma > maxPozioma) {
@@ -176,6 +203,7 @@ int Plansza::Skasuj(int i, int j) {
 		}
 		else dlPozioma = 0;
 
+		// idac po plaszczyznie pionowej na szerokosci j zliczamy najdluzszy ciag tych samych kulek
 		if (this->siatka[k][j].Get_stan() == tmp) {
 			dlPionowa++;
 			if (dlPionowa > maxPionowa) {
@@ -186,6 +214,7 @@ int Plansza::Skasuj(int i, int j) {
 		else dlPionowa = 0;
 	}
 	
+	// jezeli najdluzszy ciag spelnia krytersia skasowania (np. jest dluzszy od 4) to nastepuje usuniecie
 	int punkty = 0;
 	if (maxPozioma >= SKASOWANIE) {
 		for (int k = 0; k < maxPozioma; k++) this->siatka[i][startPozioma + k].Set_stan(0);
@@ -201,9 +230,13 @@ int Plansza::Skasuj(int i, int j) {
 		this->Alokuj_listeWolnych();
 	}
 
+	// zwracamy ew. liczbe skasowanych elementow ktore zostaja wykorzystane do punktowania
 	return punkty;
 }
 
+// metoda zpaisze do pliku plansze
+// zwroci true jezeli zapis przebiegl poprawnie
+// zwroci false jezeli zapis przebiegl niepoprawnie
 bool Plansza::Zapisz(std::string zapis) {
 	std::ofstream plik(zapis);
 	if (plik.good() && plik.is_open()) {
